@@ -498,4 +498,3 @@ ENTY:currency What is the money they use in Zambia ?
 NUM:count How many feet in a mile ?
 ENTY:substance What is the birthstone of October ?
 DESC:def What is e-coli ?
-
