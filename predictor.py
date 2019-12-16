@@ -2,11 +2,11 @@
 import os
 import numpy as np
 from tensorflow import keras
-
+import tensorflow as tf
 
 class MyPredictor(object):
     """An example Predictor for an AI Platform custom prediction routine."""
-
+    model_dir_global=[]
     def __init__(self, model):
         """Stores artifacts for prediction. Only initialized via `from_path`.
         """
@@ -27,10 +27,19 @@ class MyPredictor(object):
         Returns:
             A list of outputs containing the prediction results.
         """
-        inputs = np.asarray(instances)
-        preprocessed_inputs = self._preprocessor.preprocess(inputs)
+        inputs = instances
+        results=[]
+        with tf.Session(graph=tf.Graph()) as sess:
+            tf.saved_model.loader.load(sess, [tf.saved_model.tag_constants.SERVING], model_dir_global[0])
+            graph = tf.get_default_graph()
+            malstm_input = graph.get_tensor_by_name("malstm_input:0")
+            X_test_msg1_embed = graph.get_tensor_by_name("X_test_msg1_embed:0")
+            X_test_msg2_embed = graph.get_tensor_by_name("X_test_msg2_embed:0")
+            results.append(sess.run(X_test_msg1_embed,{malstm_input:['Iron man','Steel man']}))
+            results.append(sess.run(X_test_msg2_embed,{malstm_input:['Iron man','Steel man']}))
         
-        return outputs.tolist()
+      
+        return results
 
     @classmethod
     def from_path(cls, model_dir):
@@ -48,8 +57,8 @@ class MyPredictor(object):
         Returns:
             An instance of `MyPredictor`.
         """
-        model_path = os.path.join(model_dir, 'model.h5')
-        model = keras.models.load_model(model_path)
-
-
+        model_dir_global.append(model_dir) 
+        with tf.Session(graph=tf.Graph()) as sess:
+            model = tf.saved_model.loader.load(sess, [tf.saved_model.tag_constants.SERVING], model_dir)
+            
         return cls(model)
