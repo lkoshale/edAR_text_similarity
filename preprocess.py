@@ -8,7 +8,7 @@ class MyEncoder(object):
 
   def preprocess(self, data):
     
-    def text_to_word_list(text):
+    def text_to_word_list(self, text):
       ''' Pre process and convert texts to a list of words '''
       text = str(text)
       text = text.lower()
