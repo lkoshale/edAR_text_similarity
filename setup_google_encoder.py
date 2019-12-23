@@ -9,5 +9,5 @@ from setuptools import setup
 
 setup(
     name="my_LSTM_code",
-    version='0.1',
+    version='0.2',
     scripts=["predictor_google_encoder.py","preprocess_google_encoder.py"])
