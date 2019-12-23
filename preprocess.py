@@ -54,15 +54,15 @@ class MyEncoder(object):
     for word in data:
 
       # Check for unwanted words
-      if word in stops and word not in word2vec.vocab:
+      if word in self.stops and word not in self.word2vec.vocab:
         continue
 
-      if word not in vocabulary:
-        vocabulary[word] = len(inverse_vocabulary)
-        q2n.append(len(inverse_vocabulary))
-        inverse_vocabulary.append(word)
+      if word not in self.vocabulary:
+        self.vocabulary[word] = len(self.inverse_vocabulary)
+        q2n.append(len(self.inverse_vocabulary))
+        self.inverse_vocabulary.append(word)
       else:
-        q2n.append(vocabulary[word])
+        q2n.append(self.vocabulary[word])
 
     data = q2n
     data = np.asarray(data)
