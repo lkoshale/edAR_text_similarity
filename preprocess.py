@@ -1,3 +1,5 @@
+import numpy as np
+
 class MyEncoder(object):
   def __init__(self,vocabulary,inverse_vocabulary,word2vec):
     self.vocabulary = vocabulary
