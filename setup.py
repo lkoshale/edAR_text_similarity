@@ -10,6 +10,6 @@ Original file is located at
 from setuptools import setup
 
 setup(
-    name="my_custom_code",
+    name="my_LSTM_code",
     version='0.1',
-    scripts=["predictor.py"])
+    scripts=["predictor.py","preprocessor.pkl])
