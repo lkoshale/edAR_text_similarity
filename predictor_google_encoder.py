@@ -17,7 +17,7 @@ class MyPredictor(object):
 
     @classmethod
     def from_path(cls, model_dir):
-        model_path = os.path.join(model_dir, 'malstm_saved_model')
+        model_path = os.path.join(model_dir, 'model.h5')
         model = tf.keras.models.load_model(model_path)
 
         preprocessor_path = os.path.join(model_dir, 'preprocessor.pkl')
