@@ -12,4 +12,4 @@ from setuptools import setup
 setup(
     name="my_LSTM_code",
     version='0.1',
-    scripts=["predictor.py","preprocessor.pkl])
+    scripts=["predictor.py","preprocess.py])
