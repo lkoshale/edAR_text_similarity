@@ -1,12 +1,14 @@
 import numpy as np
+import re
 
 class MyEncoder(object):
-  def __init__(self,vocabulary,inverse_vocabulary,word2vec):
+  def __init__(self,vocabulary,inverse_vocabulary,word2vec,stops):
     self.vocabulary = vocabulary
     self.inverse_vocabulary = inverse_vocabulary
     self.word2vec = word2vec
-
-  def text_to_word_list(self, text):
+    self.stops = stops
+    
+  def text_to_word_list(text):
     ''' Pre process and convert texts to a list of words '''
     text = str(text)
     text = text.lower()
@@ -44,6 +46,7 @@ class MyEncoder(object):
 
     text = text.split() 
     return text  
+  
   def preprocess(self, data):
   
     q2n = []  # q2n -> question numbers representation
