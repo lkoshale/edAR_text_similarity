@@ -4,7 +4,7 @@ import tensorflow as tf
 
 class MyGoogleEncoder(object):
   def __init__(self):
-    self.random = None
+    self.random = 0
 
   def preprocess(self, data):
     embed = hub.Module("https://tfhub.dev/google/universal-sentence-encoder-large/3")  
