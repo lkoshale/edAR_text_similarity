@@ -48,10 +48,10 @@ class MyEncoder(object):
     return text  
   
   def preprocess(self, data):
-    import text_to_word_list
+    
     q2n = []  # q2n -> question numbers representation
 
-    for word in text_to_word_list(data):
+    for word in data:
 
       # Check for unwanted words
       if word in stops and word not in word2vec.vocab:
